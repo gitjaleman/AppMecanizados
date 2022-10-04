@@ -1,0 +1,11 @@
+export { default as Documentos } from "./Documentos";
+export { default as Finanzas } from "./Finanzas";
+export { default as Home } from "./Home";
+export { default as Inventario } from "./Inventario";
+export { default as Login } from "./Login";
+export { default as Perfil } from "./Perfil";
+export { default as Personal } from "./Personal";
+export { default as Proyectos } from "./Proyectos";
+export { default as Registro } from "./Registro";
+export { default as Reportes } from "./Reportes";
+export { default as Web } from "./Web";

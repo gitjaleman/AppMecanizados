@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { BiAt, BiLock, BiLoaderAlt } from "react-icons/bi";
 import { useForm } from "react-hook-form";
-import img from "../assets/login.png";
+import grafico from "../assets/grafico.png";
+import mecanizados from "../assets/mecanizados.png";
 
 const Login = () => {
   const [count, setCount] = useState(0);
@@ -13,14 +14,16 @@ const Login = () => {
   const onSubmit = (data) => {
     setCount(1);
     console.log(data);
-    console.log(errors.email);
   };
 
   return (
-    <div className="bg-slate-800 w-full h-screen flex flex-row">
+    <div className="bg-slate-800 w-full h-screen flex flex-row m-0">
       <div className="w-1/2 h-full  p-8">
-        <div className="w-full h-full bg-slate-700  rounded-3xl drop-shadow-2xl flex justify-center items-center">
-          <img src={img} className="max-w-xl" />
+        <div className="w-full h-full bg-slate-700  rounded-3xl drop-shadow-2xl flex justify-center items-center relative">
+          <img src={grafico} className="max-w-xl w-full" />
+          <div className=" absolute bottom-[10px] left-[20px] text-white text-sm">
+            Sistema de gestion interno - Version 1.0
+          </div>
         </div>
       </div>
       <div className="w-1/2 h-full  flex justify-center items-center">
@@ -29,9 +32,10 @@ const Login = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="w-full max-w-sm  "
         >
-          <div className="text-xl font-semibold text-white mb-6">
-            Ingreso al sistema
+          <div className=" flex items-center justify-center mb-10">
+            <img src={mecanizados} className="w-[200px]   " alt="" />
           </div>
+
           <div className="relative mb-6 ">
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none text-white">
               <BiAt />

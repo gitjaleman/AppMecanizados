@@ -1,7 +1,12 @@
 import "./App.css";
-import Router from "./routers/Router";
+import AppRouter from "./routers/AppRouter";
+import SessionProvider from "./contexts/SessionProvider";
 
 function App() {
-  return <Router />;
+  return (
+    <SessionProvider>
+      <AppRouter />
+    </SessionProvider>
+  );
 }
 export default App;
