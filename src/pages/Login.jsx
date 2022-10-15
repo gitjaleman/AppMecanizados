@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { BiAt, BiLock, BiLoaderAlt } from "react-icons/bi";
+import { FaUnlock, FaRegUser, FaCircleNotch } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import grafico from "../assets/grafico.png";
 import mecanizados from "../assets/mecanizados.png";
+import ApiLogin from "../api/ApiLogin";
 
 const Login = () => {
   const [count, setCount] = useState(0);
@@ -11,9 +12,22 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
     setCount(1);
-    console.log(data);
+    ApiLogin.get(data.user, data.pass).then(function (e) {
+      processLogin(e);
+    });
+  };
+
+  const processLogin = (e) => {
+    if (e.status) {
+      console.log("exito");
+      console.log(e);
+    } else {
+      console.log("fallo");
+      console.log(e);
+    }
   };
 
   return (
@@ -38,11 +52,11 @@ const Login = () => {
 
           <div className="relative mb-6 ">
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none text-white">
-              <BiAt />
+              <FaRegUser />
             </div>
             <input
-              {...register("email")}
-              type="email"
+              {...register("user")}
+              type="text"
               id="input-group-1"
               className="text-base bg-slate-800 border border-slate-100 text-slate-100  rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  block w-full pl-10 p-2.5  "
               placeholder="Dirección de Correo"
@@ -50,10 +64,10 @@ const Login = () => {
           </div>
           <div className="relative mb-6 ">
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none text-white">
-              <BiLock />
+              <FaUnlock />
             </div>
             <input
-              {...register("password")}
+              {...register("pass")}
               type="password"
               id="input-group-2"
               className="text-base bg-slate-800 border border-slate-100 text-slate-100  rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  block w-full pl-10 p-2.5  "
@@ -90,7 +104,7 @@ const Login = () => {
           >
             <div className="flex flex-row">
               {count === 1 && (
-                <BiLoaderAlt className="animate-spin h-5 w-5 mr-3 text-white" />
+                <FaCircleNotch className="animate-spin h-5 w-5 mr-3 text-white" />
               )}
               Ingresar
             </div>

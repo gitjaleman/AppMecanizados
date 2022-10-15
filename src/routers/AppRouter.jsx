@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ProtectedRouter from "./ProtectedRouter";
 import {
   Home,
   Perfil,
@@ -13,92 +14,23 @@ import {
   Login,
 } from "../pages";
 import AppTemplate from "../templates/AppTemplate";
+
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <AppTemplate>
-              <Home />
-            </AppTemplate>
-          }
-        />
-        <Route
-          path="/perfil"
-          element={
-            <AppTemplate>
-              <Perfil />
-            </AppTemplate>
-          }
-        />
-        <Route
-          path="/registro"
-          element={
-            <AppTemplate>
-              <Registro />
-            </AppTemplate>
-          }
-        />
-        <Route
-          path="/inventario"
-          element={
-            <AppTemplate>
-              <Inventario />
-            </AppTemplate>
-          }
-        />
-        <Route
-          path="/finanzas"
-          element={
-            <AppTemplate>
-              <Finanzas />
-            </AppTemplate>
-          }
-        />
-        <Route
-          path="/reportes"
-          element={
-            <AppTemplate>
-              <Reportes />
-            </AppTemplate>
-          }
-        />
-        <Route
-          path="/documentos"
-          element={
-            <AppTemplate>
-              <Documentos />
-            </AppTemplate>
-          }
-        />
-        <Route
-          path="/personal"
-          element={
-            <AppTemplate>
-              <Personal />
-            </AppTemplate>
-          }
-        />
-
-        <Route
-          path="/proyectos"
-          element={
-            <AppTemplate>
-              <Proyectos />
-            </AppTemplate>
-          }
-        />
-        <Route
-          path="/web"
-          element={
-            <AppTemplate>
-              <Web />
-            </AppTemplate>
-          }
-        />
-
+        <Route element={<ProtectedRouter />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/perfil" element={<Perfil />} />
+          <Route path="/registro" element={<Registro />} />
+          <Route path="/inventario" element={<Inventario />} />
+          <Route path="/finanzas" element={<Finanzas />} />
+          <Route path="/reportes" element={<Reportes />} />
+          <Route path="/documentos" element={<Documentos />} />
+          <Route path="/personal" element={<Personal />} />
+          <Route path="/proyectos" element={<Proyectos />} />
+          <Route path="/web" element={<Web />} />
+        </Route>
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
