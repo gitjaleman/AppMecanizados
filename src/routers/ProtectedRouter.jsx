@@ -1,10 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
 import AppTemplate from "../templates/AppTemplate";
 
-const ProtectedRouter = ({ session, children }) => {
-  let x = 2;
-  if (x == 1) {
-    return <Navigate to={redirectTo} />;
+const ProtectedRouter = ({ session, user, children }) => {
+  if (!session) {
+    return <Navigate to={"/login"} />;
   }
   return (
     <AppTemplate>

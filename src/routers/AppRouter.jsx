@@ -13,13 +13,16 @@ import {
   Web,
   Login,
 } from "../pages";
-import AppTemplate from "../templates/AppTemplate";
+import useUser from "../hooks/useUser";
 
 const AppRouter = () => {
+  const { userLogged } = useUser();
+  const { session, user } = userLogged();
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<ProtectedRouter />}>
+        <Route element={<ProtectedRouter session={session} user={user} />}>
           <Route path="/" element={<Home />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/registro" element={<Registro />} />
@@ -31,6 +34,7 @@ const AppRouter = () => {
           <Route path="/proyectos" element={<Proyectos />} />
           <Route path="/web" element={<Web />} />
         </Route>
+
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>

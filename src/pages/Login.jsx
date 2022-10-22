@@ -4,8 +4,12 @@ import { useForm } from "react-hook-form";
 import grafico from "../assets/grafico.png";
 import mecanizados from "../assets/mecanizados.png";
 import ApiLogin from "../api/ApiLogin";
+import useUser from "../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  let navigate = useNavigate();
+  const { userLogin } = useUser();
   const [count, setCount] = useState(0);
   const {
     register,
@@ -22,8 +26,8 @@ const Login = () => {
 
   const processLogin = (e) => {
     if (e.status) {
-      console.log("exito");
-      console.log(e);
+      userLogin(e);
+      navigate('/');
     } else {
       console.log("fallo");
       console.log(e);
